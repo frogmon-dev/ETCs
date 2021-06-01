@@ -1,0 +1,5 @@
+# ignore for User Custom
+bin/setup.ini
+*.log
+*.csv
+*.bak
