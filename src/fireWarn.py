@@ -45,16 +45,16 @@ def crc16(data, byInt = False):
 def makePacket(strList):
         result = []
         try:
-                result.append(0x01)
-                result.append(0x05)
-                result.append(0x02)             
-                for b in strList:
-                    result.append(int(b))
-                res = crc16(result, True)
-                result.append(res>>8)
-                result.append(res & 0xff)
-                print(result)
-                return result
+            result.append(0x01)
+            result.append(0x05)
+            result.append(0x02)             
+            for b in strList:
+                result.append(int(b))
+            res = crc16(result, True)
+            result.append(res>>8)
+            result.append(res & 0xff)
+            print(result)
+            return result
         except Exception as e :
             LOG.writeLn("[Serial] : error : %s" % e)
             return None
