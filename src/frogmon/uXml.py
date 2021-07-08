@@ -53,7 +53,7 @@ class XMLPaser:
 		#print(rc)
 		return rc	
 
-	def decodeFireWarn(content):
+	def decodeFireWarn(content, Area):
 		rc = ['0', '0', '0', '0']
 		xmlContents = content.decode("UTF-8").strip()
 		#print('XML ---------------------')
@@ -62,20 +62,22 @@ class XMLPaser:
 		
 		root        = ElementTree.fromstring(xmlContents)
 		wBody       = root.find("outputData")
-		items       = wBody.find("items")
+		
+		for items in wBody:
+			area = items.find("area").text
+			if (area == Area):
+				#print(items.find("sigun").text)
+				meanavg     = items.find("meanavg").text
+				val = float(meanavg)
+				if val < 51:
+					rc[0] = "%d" % round(val)
+				elif val < 65:
+					rc[1] = "%d" % round(val)
+				elif val < 85:
+					rc[2] = "%d" % round(val)
+				else:
+					rc[3] = "%d" % round(val)
 
-		meanavg     = items.find("meanavg").text
-
-		val = float(meanavg)
-		if val < 51:
-			rc[0] = "%d" % round(val)
-		elif val < 65:
-			rc[1] = "%d" % round(val)
-		elif val < 85:
-			rc[2] = "%d" % round(val)
-		else:
-			rc[3] = "%d" % round(val)
-
-		print(rc)
+		#print(rc)
 		
 		return rc			

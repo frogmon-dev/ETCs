@@ -13,9 +13,9 @@ from frogmon.uLogger import LOG
 from frogmon.uXml    import XMLPaser
 
 class REQUEST():
-	def getFireWarn(key, localArea):
+	def getFireWarn(key, localArea, Area):
 		url = 'http://know.nifos.go.kr/openapi/forestPoint/forestPointListSearch.do'
-		value = '?keyValue=%s&localArea=%s&excludeForecast=1' % (key, localArea)
+		value = '?keyValue=%s&localArea=%s&excludeForecast=1&gubun=sigungu' % (key, localArea)
 		url = '%s%s' % (url, value)
 
 		try:
@@ -24,7 +24,7 @@ class REQUEST():
 			print('--------------------')
 			s = r.content.decode("UTF-8").strip()
 			print(s)			
-			return XMLPaser.decodeFireWarn(r.content)
+			return XMLPaser.decodeFireWarn(r.content, Area)
 		except:
 			LOG.writeLn("[getFireWarn] Error : %s" % r.url)
 			return None

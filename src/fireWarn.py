@@ -24,6 +24,7 @@ configFileNM = COM.gHomeDir+COM.gSetupFile
 
 key = GLOB.readConfig(configFileNM, 'SETUP', 'key', '0')
 localArea = GLOB.readConfig(configFileNM, 'SETUP', 'localArea', '1')
+Area = GLOB.readConfig(configFileNM, 'SETUP', 'Area', '1') 
 
 rtu = serial.Serial('/dev/ttyAMA0', 9600, timeout=1, write_timeout=1)
 #rtu = serial.Serial('/dev/ttyUSB0', 9600, timeout=1, write_timeout=1)
@@ -63,7 +64,7 @@ try:
     LOG.writeLn("[CONTROL] : Fire Warning Process Start !")
     while (True):        
         try:
-            data = REQUEST.getFireWarn(key, localArea)
+            data = REQUEST.getFireWarn(key, localArea, Area)
             packet = makePacket(data)
             
             if packet:
