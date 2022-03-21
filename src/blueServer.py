@@ -5,13 +5,13 @@ Bluetooth using PyBluez (with Python 2).
 
 import bluetooth
 
-hostMACAddress = 'B8:27:EB:FA:42:AB' # The MAC address of a Bluetooth adapter on the server. The server might have multiple Bluetooth adapters.
+hostMACAddress = 'E4:5F:01:65:6C:05' # The MAC address of a Bluetooth adapter on the server. The server might have multiple Bluetooth adapters.
+#hostMACAddress = 'B8:27:EB:FA:42:AB' # The MAC address of a Bluetooth adapter on the server. The server might have multiple Bluetooth adapters.
 port = 3
 backlog = 1
 size = 1024
 s = bluetooth.BluetoothSocket(bluetooth.RFCOMM)
-s.bind(("", port))
-#s.bind((hostMACAddress, port))
+s.bind((hostMACAddress, port))
 s.listen(backlog)
 try:
     client, clientInfo = s.accept()
