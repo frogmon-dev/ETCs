@@ -14,10 +14,12 @@ s.bind((hostMACAddress, port))
 s.listen(backlog)
 try:
     client, clientInfo = s.accept()
+    print("Accepted connection from ", clientInfo)
     while 1:
         data = client.recv(size)
         if data:
-            print(data)
+            #print(data)
+            print("Received: %s" % data)
             client.send(data) # Echo back to client
 except:	
     print("Closing socket")
