@@ -20,12 +20,13 @@ def GPS_Info():
     
     print("NMEA Time: ", nmea_time,'\n')
     print ("NMEA Latitude:", nmea_latitude,"NMEA Longitude:", nmea_longitude,'\n')
-    
-    lat = float(nmea_latitude)                  #convert string into float for calculation
-    longi = float(nmea_longitude)               #convertr string into float for calculation
-    
-    lat_in_degrees = convert_to_degrees(lat)    #get latitude in degree decimal format
-    long_in_degrees = convert_to_degrees(longi) #get longitude in degree decimal format
+
+    if (nmea_latitude) and (nmea_longitude) :
+        lat = float(nmea_latitude)                  #convert string into float for calculation
+        longi = float(nmea_longitude)               #convertr string into float for calculation
+        
+        lat_in_degrees = convert_to_degrees(lat)    #get latitude in degree decimal format
+        long_in_degrees = convert_to_degrees(longi) #get longitude in degree decimal format
     
 #convert raw NMEA string into degree decimal format   
 def convert_to_degrees(raw_value):
@@ -39,7 +40,8 @@ def convert_to_degrees(raw_value):
 
 
 gpgga_info = "$GPGGA,"
-ser = serial.Serial ("/dev/ttyAMA1")              #Open port with baud rate
+#ser = serial.Serial ("/dev/ttyAMA1")              #Open port with baud rate
+ser = serial.Serial ("/dev/ttyUSB0")              #Open port with baud rate
 GPGGA_buffer = 0
 NMEA_buff = 0
 lat_in_degrees = 0
