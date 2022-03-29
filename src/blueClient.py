@@ -8,7 +8,7 @@ import bluetooth
 import time
 
 serverMACAddress = 'E4:5F:01:65:6C:05'
-port = 3
+port = 1
 s = bluetooth.BluetoothSocket(bluetooth.RFCOMM)
 s.connect((serverMACAddress, port))
 cnt = 0
