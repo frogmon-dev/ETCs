@@ -14,7 +14,7 @@ s.connect((serverMACAddress, port))
 cnt = 0
 while 1:
     data = s.recv(1024)
-    if data:
+    if len(data) > 0:
         print("Received: %s" %data)
     else:
         cnt = cnt + 1
