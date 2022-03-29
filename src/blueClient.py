@@ -13,11 +13,13 @@ s = bluetooth.BluetoothSocket(bluetooth.RFCOMM)
 s.connect((serverMACAddress, port))
 cnt = 0
 while 1:
-    cnt = cnt + 1
-    text = '%d' % cnt
-    time.sleep(1) 
-    #raw_input() # Note change to the old (Python 2) raw_input
-    if text == "quit":
-        break
-    s.send(text)
+    data = s.recv(1024)
+    if data:
+        print("Received: %s" %data)
+    else:
+        cnt = cnt + 1
+        text = '%d' % cnt
+        time.sleep(1) 
+        #raw_input() # Note change to the old (Python 2) raw_input
+        s.send(text)
 s.close()
